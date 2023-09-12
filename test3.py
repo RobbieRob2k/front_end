@@ -10,10 +10,10 @@ with open("movies2.txt", "r", encoding="cp1252") as file:
 
 # Add subheaders to indicate the purpose of the selectboxes
 st.subheader("Select Your Top 5 Best Movies:")
-selected_movies_best = [st.selectbox(f"Select Movie {i+1}", movies_list) for i in range(5)]
+selected_movies_best = [st.selectbox(f"Select Movie (Best) {i+1}", movies_list, key=f"best_movie_{i}") for i in range(5)]
 
 st.subheader("Select Your Top 5 Least Liked Movies:")
-selected_movies_least_liked = [st.selectbox(f"Select Movie {i+1}", movies_list) for i in range(5)]
+selected_movies_least_liked = [st.selectbox(f"Select Movie (Least Liked) {i+1}", movies_list, key=f"least_liked_movie_{i}") for i in range(5)]
 
 # Combine the selected movies into a single list
 selected_movies = selected_movies_best + selected_movies_least_liked
