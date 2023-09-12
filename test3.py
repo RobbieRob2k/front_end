@@ -22,6 +22,7 @@ selected_movies_fav = [col1.selectbox(f"Select Movie {i+1}", movies_list) for i 
 col2.title("Top 5 Least Liked Movies")
 selected_movies_dislike = [col2.selectbox(f"Select Movie {i+1}", movies_list) for i in range(5)]
 
+"""
 # Function to get movie recommendations and top genres from the API
 def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike):
     try:
@@ -66,3 +67,4 @@ if st.button("Get Recommendations"):
 if __name__ == "__main__":
     st.set_page_config(page_title="Your Personalized Movie Recommendations")
     st.write("Instructions: Select your top 5 favorite and top 5 least liked movies, and click 'Get Recommendations' to view movie recommendations and top genres.")
+"""
