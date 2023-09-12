@@ -8,19 +8,15 @@ import requests
 with open("movies2.txt", "r", encoding="cp1252") as file:
     movies_list = [line.strip() for line in file]
 
-# Streamlit UI
-st.title("Your Personalized Movie Recommendations")
+# Add subheaders to indicate the purpose of the selectboxes
+st.subheader("Select Your Top 5 Best Movies:")
+selected_movies_best = [st.selectbox(f"Select Movie {i+1}", movies_list) for i in range(5)]
 
-# Create two columns for top 5 favorites and top 5 least liked movies
-col1, col2 = st.beta_columns(2)
+st.subheader("Select Your Top 5 Least Liked Movies:")
+selected_movies_least_liked = [st.selectbox(f"Select Movie {i+1}", movies_list) for i in range(5)]
 
-# Create selectboxes for top 5 favorites
-col1.title("Top 5 Favorite Movies")
-selected_movies_fav = [col1.selectbox(f"Select Movie {i+1}", movies_list) for i in range(5)]
-
-# Create selectboxes for top 5 least liked movies
-col2.title("Top 5 Least Liked Movies")
-selected_movies_dislike = [col2.selectbox(f"Select Movie {i+1}", movies_list) for i in range(5)]
+# Combine the selected movies into a single list
+selected_movies = selected_movies_best + selected_movies_least_liked
 
 """
 # Function to get movie recommendations and top genres from the API
