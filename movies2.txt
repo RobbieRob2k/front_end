@@ -1,4 +1,4 @@
-Choose your favorite movie!
+Please select movie!
 Toy Story (1995)
 Jumanji (1995)
 Heat (1995)
