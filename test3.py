@@ -19,8 +19,7 @@ selected_movies_least_liked = [st.selectbox(f"Select Movie (Least Liked) {i+1}",
 # Combine the selected movies into a single list
 selected_movies = selected_movies_best + selected_movies_least_liked
 
-"""
-print("Function to get movie recommendations and top genres from the API")
+# Function to get movie recommendations and top genres from the API
 def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike):
     try:
         # Create a JSON payload with selected movies
@@ -46,7 +45,7 @@ def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike)
         st.error(f"API request error: {e}")
         return [], []
 
-print("Create a button to fetch movie recommendations and top genres")
+# Create a button to fetch movie recommendations and top genres
 if st.button("Get Recommendations"):
     recommendations, top_genres = get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike)
 
@@ -64,4 +63,3 @@ print("Run the app")
 if __name__ == "__main__":
     st.set_page_config(page_title="Your Personalized Movie Recommendations")
     st.write("Instructions: Select your top 5 favorite and top 5 least liked movies, and click 'Get Recommendations' to view movie recommendations and top genres.")
-"""
