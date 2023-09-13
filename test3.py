@@ -10,13 +10,14 @@ with open("movies2.txt", "r", encoding="cp1252") as file:
 
 # Add subheaders to indicate the purpose of the selectboxes
 st.subheader("Select Your Top 5 Best Movies:")
-liked_movies = [st.selectbox(f"Select Movie (Best) {i+1}", movies_list, key=f"liked_movies_{i}") for i in range(5)]
 
+selected_movies_best = [st.selectbox(f"Select Movie (Best) {i+1}", movies_list, key=f"best_movie_{i}") for i in range(5)]
 st.subheader("Select Your Top 5 Least Liked Movies:")
-disliked_movies = [st.selectbox(f"Select Movie (Least Liked) {i+1}", movies_list, key=f"disliked_movies_{i}") for i in range(5)]
+
+selected_movies_least_liked = [st.selectbox(f"Select Movie (Least Liked) {i+1}", movies_list, key=f"least_liked_movie_{i}") for i in range(5)]
 
 # Combine the selected movies into a single list
-selected_movies = liked_movies + disliked_movies
+selected_movies = selected_movies_best + selected_movies_least_liked
 
 """
 print("Function to get movie recommendations and top genres from the API")
