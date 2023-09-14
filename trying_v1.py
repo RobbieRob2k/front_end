@@ -13,10 +13,6 @@ select_boxes = []
 for i in range(5):
     select_boxes.append(st.selectbox(f"Select Option {i + 1}", ["Option A", "Option B", "Option C"]))
 
-# Display the select boxes
-for i, select_box in enumerate(select_boxes):
-    st.write(f"Option {i + 1}: {select_box}")
-
 # Add a background image
 st.markdown(
     """
