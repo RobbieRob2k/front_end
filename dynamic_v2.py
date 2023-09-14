@@ -22,14 +22,10 @@ initial_best_selections = ["Movie 1 (Liked)", "Movie 2 (Liked)", "Movie 3 (Liked
 initial_least_liked_selections = ["Movie 1 (Disliked)", "Movie 2 (Disliked)", "Movie 3 (Disliked)"]
 
 st.subheader("Select Your Top 3 Best Movies:")
-selected_movies_best = st.selectbox("Select Movie (Best) 1", movies_list, key="best_movie_0", index=0, value=initial_best_selections[0]), \
-                        st.selectbox("Select Movie (Best) 2", movies_list, key="best_movie_1", index=0, value=initial_best_selections[1]), \
-                        st.selectbox("Select Movie (Best) 3", movies_list, key="best_movie_2", index=0, value=initial_best_selections[2])
+selected_movies_best = [st.selectbox(f"Select Movie (Best) {i+1}", movies_list, key=f"best_movie_{i}", index=0, value=initial_best_selections[i]) for i in range(3)]
 
 st.subheader("Select Your Top 3 Least Liked Movies:")
-selected_movies_least_liked = st.selectbox("Select Movie (Least Liked) 1", movies_list, key="least_liked_movie_0", index=0, value=initial_least_liked_selections[0]), \
-                              st.selectbox("Select Movie (Least Liked) 2", movies_list, key="least_liked_movie_1", index=0, value=initial_least_liked_selections[1]), \
-                              st.selectbox("Select Movie (Least Liked) 3", movies_list, key="least_liked_movie_2", index=0, value=initial_least_liked_selections[2])
+selected_movies_least_liked = [st.selectbox(f"Select Movie (Least Liked) {i+1}", movies_list, key=f"least_liked_movie_{i}", index=0, value=initial_least_liked_selections[i]) for i in range(3)]
 
 # Function to receive movie recommendations and top genres from API
 def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike):
@@ -59,9 +55,9 @@ def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike)
 
 # Button to add a new select box for liked movies
 if len(selected_movies_best) < 10:
-    st.subheader("Add a Liked Movie:")
-    movie_selectbox = st.selectbox("Select a Movie (Liked)", movies_list)
-    selected_movies_best += [movie_selectbox]
+    if st.button("Add a Liked Movie"):
+        movie_selectbox = st.selectbox("Select a Movie (Liked)", movies_list)
+        selected_movies_best.append(movie_selectbox)
 
 # Button on UI to get recommendations
 if st.button("Get My Movie Recommendations!"):
@@ -81,9 +77,9 @@ if st.button("Get My Movie Recommendations!"):
 
 # Button to add a new select box for least liked movies
 if len(selected_movies_least_liked) < 10:
-    st.subheader("Add a Least Liked Movie:")
-    movie_selectbox = st.selectbox("Select a Movie (Least Liked)", movies_list)
-    selected_movies_least_liked += [movie_selectbox]
+    if st.button("Add a Least Liked Movie"):
+        movie_selectbox = st.selectbox("Select a Movie (Least Liked)", movies_list)
+        selected_movies_least_liked.append(movie_selectbox)
 
 if __name__ == "__main__":
     st.set_page_config(page_title="Your Personalized Movie Recommendations")
