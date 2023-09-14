@@ -13,14 +13,21 @@ select_boxes = []
 for i in range(5):
     select_boxes.append(st.selectbox(f"Select Option {i + 1}", ["Option A", "Option B", "Option C"]))
 
+# Display the select boxes
+for i, select_box in enumerate(select_boxes):
+    st.write(f"Option {i + 1}: {select_box}")
+
+# URL to the image hosted on GitHub
+background_image_url = "https://raw.githubusercontent.com/RobbieRob2k/front_end/main/wallpaper.jpg"
+
 # Add a background image
 st.markdown(
-    """
+    f"""
     <style>
-    body {
-        background-image: url("wallpaper.jpg");
+    body {{
+        background-image: url("{background_image_url}");
         background-size: cover;
-    }
+    }}
     </style>
     """,
     unsafe_allow_html=True
