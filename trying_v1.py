@@ -1,7 +1,6 @@
 import streamlit as st
 import requests
-
-st.title("Get Your AI-Powered Movie Recommendations 🎬🤖🍿", anchor="center")
+import time
 
 # Function to simulate a 30-second loading process
 def simulate_loading():
@@ -19,55 +18,18 @@ def simulate_loading():
 
     st.success("Loading Complete!")
 
-# API endpoint 
+# API endpoint
 recommendations_endpoint = "http://localhost:8000/predict"
 
-# reads list of movies saved in this text file, needs to be updated once new movies added; note: ASIN formatting
-with open("movies2.txt", "r", encoding="cp1252") as file:
-    movies_list = [line.strip() for line in file]
+# ... (Rest of your code for selecting movies)
 
-st.subheader("Select Your Favorite Movies:")
-selected_movies_best = [st.selectbox(f"Select Favorite Movie {i+1}", movies_list, key=f"best_movie_{i}") for i in range(5)]
-
-st.subheader("Select Your Least Favorite Movies:")
-selected_movies_least_liked = [st.selectbox(f"Select Least Favorite Movie {i+1}", movies_list, key=f"least_liked_movie_{i}") for i in range(5)]
-
-# combining most liked and disliked into a single list for API
-selected_movies = selected_movies_best + selected_movies_least_liked
-
-# function to receive movie recommendations and top genres from API
-def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike):
-    try:
-        # JSON payload with selected movies
-        payload = {
-            "liked_movies": selected_movies_fav,
-            "disliked_movies": selected_movies_dislike
-        }
-
-        # Make a POST request to the recommendations endpoint
-        response = requests.get(recommendations_endpoint, params=payload)
-
-        # check if the request was successful
-        # add genre to return term once set up
-        if response.status_code == 200:
-            data = response.json()
-            recommendations = data.get("Suggested Movies", [])
-            # top_genres = data.get("Top Genres", [])
-            return recommendations
-        else:
-            st.error(f"Error fetching recommendations: {response.status_code}")
-            return [], []
-
-    except requests.exceptions.RequestException as e:
-        st.error(f"API request error: {e}")
-        return [], []
-
-# button on UI to get recommendations
-# need to add genres to st.button once we can load them
+# Button on UI to get recommendations
 if st.button("Get My Movie Recommendations!"):
-        # Display loading bar
+    # Display loading bar
     simulate_loading()
-        recommendations = get_recommendations_and_genres(selected_movies_best, selected_movies_least_liked)
+
+    # Once loading is complete, fetch recommendations
+    recommendations = get_recommendations_and_genres(selected_movies_best, selected_movies_least_liked)
 
     if recommendations:
         st.subheader("Your Top 10 Recommended Movies:")
