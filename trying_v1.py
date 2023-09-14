@@ -23,5 +23,6 @@ if st.button("Add Another Select Box"):
     create_select_box()
 
 # Display the select boxes
-for i, select_box in enumerate(select_boxes):
-    st.write(f"Option {i + 1}: {select_box}")
+if select_boxes:
+    for i, select_box in enumerate(select_boxes):
+        st.write(f"Option {i + 1}: {select_box}")
