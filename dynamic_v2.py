@@ -46,10 +46,10 @@ def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike)
 st.title("Your Personalized Movie Recommendations")
 
 st.subheader("Select Your Top 3 Best Movies:")
-selected_movies_best = st.multiselect("Select Movies (Best)", movies_list, initial_best_selections)
+selected_movies_best = st.multiselect("Select Movies (Best)", movies_list, initial_best_selections, key="best_movies")
 
 st.subheader("Select Your Top 3 Least Liked Movies:")
-selected_movies_least_liked = st.multiselect("Select Movies (Least Liked)", movies_list, initial_least_liked_selections)
+selected_movies_least_liked = st.multiselect("Select Movies (Least Liked)", movies_list, initial_least_liked_selections, key="least_liked_movies")
 
 # Button on UI to get recommendations
 if st.button("Get My Movie Recommendations!"):
