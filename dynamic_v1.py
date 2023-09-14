@@ -17,7 +17,10 @@ def display_select_boxes(movie_list, selected_movies, category_name):
     for i, movie in enumerate(selected_movies):
         st.selectbox(f"Select Movie ({category_name}) {i + 1}", movie_list, key=f"{category_name}_movie_{i}")
 
-# Initially, load with 3 favorite and 3 disliked movies
+# Initially, load with 3 favorite and 3 disliked movies (you can change these initial selections)
+selected_movies_best = ["Movie 1 (Liked)", "Movie 2 (Liked)", "Movie 3 (Liked)"]
+selected_movies_least_liked = ["Movie 1 (Disliked)", "Movie 2 (Disliked)", "Movie 3 (Disliked)"]
+
 st.subheader("Select Your Top 3 Best Movies:")
 display_select_boxes(movies_list, selected_movies_best, "best")
 
