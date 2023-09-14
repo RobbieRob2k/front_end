@@ -14,15 +14,10 @@ def create_select_box():
     if len(select_boxes) < 10:
         select_boxes.append(st.selectbox(f"Select Option {len(select_boxes) + 1}", ["Option A", "Option B", "Option C"]))
 
-# Create three initial select boxes
-for _ in range(3):
-    create_select_box()
-
 # Button to add a new select box
 if st.button("Add Another Select Box"):
     create_select_box()
 
 # Display the select boxes
-if select_boxes:
-    for i, select_box in enumerate(select_boxes):
-        st.write(f"Option {i + 1}: {select_box}")
+for i, select_box in enumerate(select_boxes):
+    st.write(f"Option {i + 1}: {select_box}")
