@@ -53,12 +53,6 @@ def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike)
         st.error(f"API request error: {e}")
         return [], []
 
-# Button to add a new select box for liked movies
-if len(selected_movies_best) < 10:
-    if st.button("Add a Liked Movie"):
-        movie_selectbox = st.selectbox("Select a Movie (Liked)", movies_list)
-        selected_movies_best.append(movie_selectbox)
-
 # Button on UI to get recommendations
 if st.button("Get My Movie Recommendations!"):
     recommendations, top_genres = get_recommendations_and_genres(selected_movies_best, selected_movies_least_liked)
@@ -74,6 +68,12 @@ if st.button("Get My Movie Recommendations!"):
     st.subheader("Top Genres Based on Your Selections:")
     for i, genre in enumerate(top_genres):
         st.write(f"{i + 1}. {genre}")
+
+# Button to add a new select box for liked movies
+if len(selected_movies_best) < 10:
+    if st.button("Add a Liked Movie"):
+        movie_selectbox = st.selectbox("Select a Movie (Liked)", movies_list)
+        selected_movies_best.append(movie_selectbox)
 
 # Button to add a new select box for least liked movies
 if len(selected_movies_least_liked) < 10:
