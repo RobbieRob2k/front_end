@@ -3,6 +3,22 @@ import requests
 
 st.title("Get Your AI-Powered Movie Recommendations 🎬🤖🍿", anchor="center")
 
+# Function to simulate a 30-second loading process
+def simulate_loading():
+    st.write("Loading in progress...")
+    progress_bar = st.progress(0)
+
+    # Number of steps for the progress bar
+    num_steps = 100
+    # Time interval (in seconds) for each step
+    step_interval = 30 / num_steps
+
+    for i in range(num_steps + 1):
+        progress_bar.progress(i)
+        time.sleep(step_interval)
+
+    st.success("Loading Complete!")
+
 # API endpoint 
 recommendations_endpoint = "http://localhost:8000/predict"
 
@@ -49,7 +65,8 @@ def get_recommendations_and_genres(selected_movies_fav, selected_movies_dislike)
 # button on UI to get recommendations
 # need to add genres to st.button once we can load them
 if st.button("Get My Movie Recommendations!"):
-    with st.spinner("Processing your request..."):
+        # Display loading bar
+    simulate_loading()
         recommendations = get_recommendations_and_genres(selected_movies_best, selected_movies_least_liked)
 
     if recommendations:
