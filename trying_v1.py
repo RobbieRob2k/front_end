@@ -21,13 +21,3 @@ if __name__ == "__main__":
         st.text("Loading in progress...")
         simulate_loading()
         st.success("Loading Complete!")
-In this example, the simulate_loading function gradually updates the progress bar by looping through 100 steps over a 30-second duration. It introduces a delay between each step to create the effect of a slow loading process.
-
-When you click the "Start Loading" button, you'll see the progress bar slowly fill over the course of 30 seconds, simulating a loading process. This approach allows you to mimic the appearance of a real loading time while actually controlling the duration programmatically.
-
-Feel free to adjust the num_steps and step_interval variables to fine-tune the speed and duration of the progress bar as needed for your application.
-
-
-
-
-
